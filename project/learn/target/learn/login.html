@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录页面</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        .title{
+            background-color: lightblue;
+            text-align: center;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            text-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+        }
+        #login_div{
+            text-align: center;
+            padding-top: 80px;
+            width: 500px;
+            height: 300px;
+            background-color: lightblue;
+            margin: auto;
+            margin-top: 100px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 20px 0px rgba(0,0,0,0.5);
+        }
+        #submit{
+            width: 165px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">登陆界面</h1>
+    <div id="login_div">
+        <form action="login" method="post">
+            账号：<input type="text" name="name">
+            <br>
+            <br>
+            密码：<input type="password" name="password">
+            <br>
+            <br>
+            <span style="color: rgba(0,0,0,0)">密码;;;</span>
+            <input type="submit" value="登录" id="submit">
+        </form>
+    </div>
+</body>
+</html>

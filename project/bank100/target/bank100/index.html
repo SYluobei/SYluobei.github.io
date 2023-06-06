@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录界面</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        .title{
+            background-color: lightblue;
+            text-align: center;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            text-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+        }
+        #login_div{
+            text-align: center;
+            padding-top: 80px;
+            width: 500px;
+            height: 220px;
+            background-color: lightblue;
+            margin: auto;
+            margin-top: 100px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 20px 0px rgba(0,0,0,0.5);
+        }
+        #submit{
+            width: 165px;
+        }
+    </style>
+    <script src="js/jquery.js"></script>
+</head>
+<body>
+    <h1 class="title">登录界面</h1>
+    <div id="login_div">
+        账号：<input type="text" id="name">
+        <br>
+        <br>
+        密码：<input type="password" id="password">
+        <br>
+        <br>
+        <span style="color: rgba(0,0,0,0)">密码;;;</span>
+        <input type="submit" value="登录" id="bt">
+
+    </div>
+</body>
+<script>
+    $(function (){
+        $("#bt").click(function (){
+            let name = $("#name").val();
+            let password = $("#password").val();
+            // console.log(name,password);
+            // alert(name+password);
+            $.ajax({
+                url:"login",
+                type:"post",
+                data:{
+                    "name":name,
+                    "password":password
+                },
+                success:function (res){ //success表示当后台有返回结果时执行对应方法
+                    // console.log("接受后台返回的数据"+res);
+                    if(res=="true"){
+                        var url = "main.html";
+                        window.location.href=url;
+                    }else{
+                        alert("账号或密码有误");
+                    }
+                }
+            })
+        });
+    });
+</script>
+</html>
+

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        .title{
+            background-color: lightblue;
+            text-align: center;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            text-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+        }
+        #login_div{
+            text-align: center;
+            padding-top: 80px;
+            width: 500px;
+            height: 220px;
+            background-color: lightblue;
+            margin: auto;
+            margin-top: 100px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 20px 0px rgba(0,0,0,0.5);
+        }
+    </style>
+    <script src="js/jquery.js"></script>
+</head>
+<body>
+    <h1 class="title">蜗牛网银转账系统</h1>
+    <div id="login_div">
+        <h3><span id="name"></span>的信息</h3>
+        <p>id:<span id="id"></span></p>
+        <p>cardId:<span id="cardId"></span></p>
+        <p>money:<span id="money"></span></p>
+        <input type="text" placeholder="请输入卡号" id="dest_card">
+        <input type="text" placeholder="请输入转账金额" id="dest_money">
+        <button id="bt">转账</button>
+    </div>
+</body>
+<script>
+    $.ajax({
+        url:"personal",
+        type:"post",
+        success(res){
+            // console.log(res);
+            // alert(res);
+            let user = res;
+            $("#id").text(user.id);
+            $("#name").text(user.account);
+            $("#cardId").text(user.cardId);
+            $("#money").text(user.money);
+            // alert(JSON.parse(res));
+        }
+    })
+    $(function (){
+       $("#bt").click(function (){
+            let card = $("#dest_card").val();
+            let money = $("#dest_money").val();
+            console.log(card,money);
+
+            //请求转账
+           $.ajax({
+               url:"transfer",
+               type:"post",
+               data:{
+                   "cardId":card,
+                   "money":money
+               },
+               success(res) {
+                   console.log(res);
+                   if(money>0){
+                       if(res!=false){
+                           alert("转账成功");
+                           location.reload();
+                       }else{
+                           alert("转账失败");
+
+                       }
+                   }else {
+                       if(res!=false){
+                           alert("收账成功");
+                           location.reload();
+                       }else{
+                           alert("收账失败");
+
+                       }
+                   }
+               }
+           })
+       });
+    });
+</script>
+</html>
